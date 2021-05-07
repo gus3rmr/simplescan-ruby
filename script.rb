@@ -1,6 +1,5 @@
 require 'httpclient'
 
-
 def subdomain_scan(domain, txt_file)
 
   puts ("Target domain: " + domain)
@@ -22,7 +21,7 @@ def subdomain_scan(domain, txt_file)
       puts ("[*] Subdomain found: " + line2 + " --> " + res.status.to_s)
       discovered_subdomains.push(line2)
     rescue SocketError, Errno::ECONNREFUSED, HTTPClient::ConnectTimeoutError, Errno::ENETUNREACH
-      puts ("[*]Not found: " + line2)
+      puts ("[*] Not found: " + line2)
     end
   end
 
@@ -30,6 +29,16 @@ def subdomain_scan(domain, txt_file)
   discovered_subdomains.each do |ds|
       puts ds
   end
+
+  found_subdomains_file = (domain + "_subdomains.txt")
+
+  File.open(found_subdomains_file, "w") do |file|
+    discovered_subdomains.each do |ds|
+    file.write(ds + "\n")
+    end
+  end
+
+  puts ("Discovered subdomains saved in " + found_subdomains_file)
 
 end
 
