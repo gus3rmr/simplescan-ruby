@@ -1,5 +1,5 @@
 # simplescanrb
-This tool looks for valid subdomains for the given domain using the httpclient library in ruby, then it shows you the list of subdomains found.
+This tool looks for valid subdomains for the given domain using the httpclient library in ruby, then it shows you and saves a .txt file with the list of subdomains found.
 
 
 #### Requirements:
